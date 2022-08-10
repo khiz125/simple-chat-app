@@ -5,19 +5,18 @@ import "firebase/compat/firestore";
 // import { getAnalytics } from "firebase/analytics";
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyDpLhzcW5dMMt5xnvPo1mX9URRXJRLs8ok",
-  authDomain: "simple-chat-app-bf767.firebaseapp.com",
-  projectId: "simple-chat-app-bf767",
-  storageBucket: "simple-chat-app-bf767.appspot.com",
-  messagingSenderId: "187375427275",
-  appId: "1:187375427275:web:b5095e5fa8698ed1b7054e",
-  measurementId: "G-FB3YLKJDQS"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_APPID,
+  measurementId: process.env.REACT_APP_MEASUREMENTID
 });
 
 // const analytics = getAnalytics(app);
 
 const db = firebaseApp.firestore();
-
 const auth = firebase.auth();
 
-export { db, auth }
+export { firebase, db, auth }
