@@ -1,37 +1,44 @@
 import React, { useState } from 'react';
-import { db, auth } from "../firebase.js";
-import firebase from "firebase/compat/app";
-import { Input } from "@mui/material";
+import { getFirebaseDb, getFirebaseAuth } from "../firebase";
+// import { GoogleAuthProvider, User, UserCredential, signInWithPopup } from 'firebase/auth';
+import { Firestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import firebase from "firebase/app";
+import { Input, Button } from "@mui/material";
 
 
 function SendMessage() {
   const [message, setMessage] = useState('');
+  // const { scroll } = props
+  console.log(message)
 
-  function sendMessage(event: React.FormEvent<HTMLFormElement>) {
+  const auth = getFirebaseAuth();
+  const db = getFirebaseDb();
+  const user = auth.currentUser;
+
+  async function sendMessage(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    console.log(auth.currentUser);
-
-    const { uid, photoURL } = auth.currentUser;
-
-    db.collection("messages").add({
+    await addDoc(collection(db, "messages"), {
       text: message,
-      photoURL,
-      uid,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
+      uid: user?.uid,
+      photoURL: user?.photoURL,
+      createdAt: serverTimestamp()
+    })
+
     setMessage("");
+    //   await scroll.current.scrollIntoView({ behaveior: "smooth" })
   }
   return (
     <div>
       <form onSubmit={sendMessage}>
         <div>
-          <Input 
-            type="text" 
+          <Input
+            type="text"
             placeholder='メッセージを入力してください'
             onChange={(e) => setMessage(e.target.value)}
             value={message}
           />
+          <Button type="submit">送信</Button>
         </div>
       </form>
     </div>

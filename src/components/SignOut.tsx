@@ -1,8 +1,10 @@
 import React from 'react';
-import { auth } from "../firebase.js";
+import { getFirebaseAuth } from "../firebase";
 import { Button } from "@mui/material";
 
 function SignOut() {
+  const auth = getFirebaseAuth();
+  
   return (
     <div>
       <Button onClick={() => auth.signOut()}>
