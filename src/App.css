@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: inherit;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  -webkit-text-size-adjust: 100%;
+  font-size: 62.5%;
+  line-height: 1.5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'Noto Sans JP', "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  background-color: rgb(239, 253, 245);
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+p {
+  display: block;
+  margin-inline-start: 1em;
+  margin-inline-end: 1em;
+  max-width: 640px;
+  overflow-wrap: break-word;
+}
+
+img {
+  border-radius: 50%;
+  height: 5vh;
+  border: 0 solid black;
+  box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.5);
+}
+
+.header {
+  background-color: rgb(252, 255, 225);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.3);
+  color: white;
+  height: 8vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+.msg {
+  display: flex;
+  align-items: center;
+  padding: 2% 2% 2% 2%;
+  margin: 5%;
+  border-radius: 1.5rem;
+  box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.3);
+
+}
+
+.sent {
+  background-color: #fff2f2;
+  color: #333;
+  border: 1px solid lightgray;
+  border-top-right-radius: 2%;
+  flex-direction: row-reverse;
+  text-align: end;
+  float: right;
+  margin-left: 25%;
+  box-shadow: 1px 1px 0px rgb(0, 0, 0, 0.3);
+}
+
+.received {
+  color: #333;
+  border: 1px solid lightgray;
+  background-color: #ffffff;
+  border-top-left-radius: 2%;
+  float: left;
+  margin-right: 25%;
+  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.3);
+}
+
+.sendMsg {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+  border-top: 1px solid lightgray;
+  margin-left: -5px;
+  padding: 10px;
+  padding-bottom: 30px;
+  background-color: #fafafa;
+}
+
+.messages {
+  margin: 20% 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

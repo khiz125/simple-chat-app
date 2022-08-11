@@ -31,11 +31,11 @@ function Chat() {
   return (
     <div>
       <SignOut />
-      <div>
+      <div className='messages'>
         {messages.map(({id, text, photoURL, uid}) => (
           <div 
             key={id}
-            className={`msg ${user ? uid === user.uid ? "send" : "recieve" : ""}`}
+            className={`msg ${uid === user?.uid ? "sent" : "received"}`}
           >
             <img src={photoURL} alt="" />
             <p>{text}</p>

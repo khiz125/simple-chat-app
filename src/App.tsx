@@ -3,6 +3,7 @@ import SignIn from './components/SignIn';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getFirebaseAuth } from "./firebase";
 import Chat from "./components/Chat";
+import "./App.css"
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
   const [user] = useAuthState(auth);
 
   return (
-    <div>
+    <div className="App">
       {user ? <Chat /> : <SignIn />}
     </div>
   );

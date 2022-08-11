@@ -6,8 +6,11 @@ function SignOut() {
   const auth = getFirebaseAuth();
   
   return (
-    <div>
-      <Button onClick={() => auth.signOut()}>
+    <div className='header'>
+      <Button 
+        onClick={() => auth.signOut()}
+        style={{ color: "#333", fontSize: "2.5rem" }}
+      >
         サインアウト
       </Button>
     </div>
