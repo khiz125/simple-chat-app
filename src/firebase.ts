@@ -19,8 +19,8 @@ const firebaseConfig = {
 // const analytics = getAnalytics(app);
 // const db = firebaseApp.firestore();
 // const auth = firebase.auth();
-
 firebase.initializeApp(firebaseConfig);
+
 const messaging = getMessaging();
 
 export const requestForToken = () => {
