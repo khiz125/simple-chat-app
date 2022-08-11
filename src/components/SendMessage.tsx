@@ -31,14 +31,29 @@ function SendMessage() {
   return (
     <div>
       <form onSubmit={sendMessage}>
-        <div>
+        <div className="sendMsg">
           <Input
+            style={{
+              width: "78%",
+              fontSize: "1.8rem",
+              fontWeight: "300",
+              marginLeft: "2%",
+              marginBottom: "-2%",
+            }}
             type="text"
             placeholder='メッセージを入力してください'
             onChange={(e) => setMessage(e.target.value)}
             value={message}
           />
-          <Button type="submit">送信</Button>
+          <Button
+            style={{
+              fontSize: "1.5rem",
+              fontWeight: "300",
+              marginLeft: "1%",
+              marginBottom: "-2%",
+            }} 
+            type="submit"
+          >送信</Button>
         </div>
       </form>
     </div>
