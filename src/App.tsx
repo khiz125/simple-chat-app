@@ -14,10 +14,12 @@ function App() {
 
   return (
     <>
-      <div className="App">
-        {user ? <Chat /> : <SignIn />}
+      <div className='wrap'>
+        <div className="App">
+          {user ? <Chat /> : <SignIn />}
+        </div>
+        <Notification />
       </div>
-      <Notification />
     </>
   );
 }

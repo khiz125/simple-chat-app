@@ -1,11 +1,19 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import SignOut from "./SignOut";
+import Navbar from "./Navbar";
 import SendMessage from "./SendMessage"
 import { getFirebaseDb, getFirebaseAuth } from "../firebase";
 import { Firestore, query, collection, doc, getDoc, orderBy, onSnapshot, limit } from 'firebase/firestore';
 
+
+
 function Chat() {
   const scroll = useRef<HTMLDivElement>(null);
+  // const [open, setOpen] = useState(false);
+
+  //   const toggleDrawer = (open: boolean) => () => {
+  //   open = !open
+  // };
+
   const scrollToBottomOfList = React.useCallback(() => {
     scroll!.current!.scrollIntoView({
       behavior: 'smooth',
@@ -19,7 +27,6 @@ function Chat() {
   const user = auth.currentUser;
 
   useEffect(() => {
-
     const documents =  query(collection(db, "messages"), orderBy("createdAt"), limit(50))
     
     onSnapshot(documents, (snapshot) => {
@@ -30,7 +37,7 @@ function Chat() {
 
   return (
     <div>
-      <SignOut />
+      <Navbar />
       <div className='messages'>
         {messages.map(({id, text, photoURL, uid}) => (
           <div 
@@ -42,7 +49,7 @@ function Chat() {
           </div>
         ))}
       </div>
-      <SendMessage /*scroll={scroll}*/ />
+      <SendMessage />
       <div ref={scroll}></div>
     </div>
   )

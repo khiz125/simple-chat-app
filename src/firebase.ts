@@ -27,7 +27,7 @@ export const requestForToken = () => {
   return getToken(messaging, { vapidKey: process.env.VAPIDKEY })
     .then((currentToken) => {
       if (currentToken) {
-        console.log("current token for client: ", currentToken);
+        // console.log("current token for client: ", currentToken);
       } else {
         console.log("No registration token available. Request permission to generate one.");
       }
