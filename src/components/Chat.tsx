@@ -1,27 +1,22 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import Navbar from "./Navbar";
 import SendMessage from "./SendMessage"
 import { getFirebaseDb, getFirebaseAuth } from "../firebase";
-import { Firestore, query, collection, doc, getDoc, orderBy, onSnapshot, limit } from 'firebase/firestore';
-
+import { query, collection, orderBy, onSnapshot, limit, DocumentData } from 'firebase/firestore';
+import Moment from "react-moment"
 
 
 function Chat() {
   const scroll = useRef<HTMLDivElement>(null);
-  // const [open, setOpen] = useState(false);
 
-  //   const toggleDrawer = (open: boolean) => () => {
-  //   open = !open
-  // };
+  // const scrollToBottomOfList = React.useCallback(() => {
+  //   scroll!.current!.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'end',
+  //   })
+  // }, [ scroll ])
 
-  const scrollToBottomOfList = React.useCallback(() => {
-    scroll!.current!.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    })
-  }, [ scroll ])
-
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<DocumentData[]>([]);
   const auth = getFirebaseAuth();
   const db = getFirebaseDb();
   const user = auth.currentUser;
@@ -32,25 +27,39 @@ function Chat() {
     onSnapshot(documents, (snapshot) => {
       setMessages(snapshot.docs.map((doc) => doc.data()))})
     
-    scrollToBottomOfList();
+    // scrollToBottomOfList();
   },[]);
+
+  const scrollBottomRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    scrollBottomRef?.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    });
+  }, [messages]);
+
+ 
 
   return (
     <div>
       <Navbar />
       <div className='messages'>
-        {messages.map(({id, text, photoURL, uid}) => (
-          <div 
+        {messages.map(({id, text, photoURL, uid, createdAt}) => (
+          <div
             key={id}
             className={`msg ${uid === user?.uid ? "sent" : "received"}`}
           >
             <img src={photoURL} alt="" />
-            <p>{text}</p>
+            <p>
+              {text}
+              <br />
+              <small><Moment fromNow>{createdAt.toDate()}</Moment></small>
+            </p>
           </div>
         ))}
+        <div ref={scrollBottomRef}/>
       </div>
       <SendMessage />
-      <div ref={scroll}></div>
     </div>
   )
 }

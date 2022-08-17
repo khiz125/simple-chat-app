@@ -4,7 +4,6 @@ import { Button } from "@mui/material";
 import * as Message from "react-icons/bi";
 import TemplateMessages from "./TemplateMessages"
 
-import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 function Navbar() {
