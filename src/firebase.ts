@@ -19,15 +19,15 @@ const firebaseConfig = {
 // const analytics = getAnalytics(app);
 // const db = firebaseApp.firestore();
 // const auth = firebase.auth();
-
 firebase.initializeApp(firebaseConfig);
+
 const messaging = getMessaging();
 
 export const requestForToken = () => {
   return getToken(messaging, { vapidKey: process.env.VAPIDKEY })
     .then((currentToken) => {
       if (currentToken) {
-        console.log("current token for client: ", currentToken);
+        // console.log("current token for client: ", currentToken);
       } else {
         console.log("No registration token available. Request permission to generate one.");
       }

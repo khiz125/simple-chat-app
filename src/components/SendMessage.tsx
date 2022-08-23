@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { getFirebaseDb, getFirebaseAuth } from "../firebase";
 // import { GoogleAuthProvider, User, UserCredential, signInWithPopup } from 'firebase/auth';
-import { Firestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import firebase from "firebase/app";
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { Input, Button } from "@mui/material";
 
 
 function SendMessage() {
   const [message, setMessage] = useState('');
-  // const { scroll } = props
-  console.log(message)
 
+
+  // const { scroll } = props
+  
   const auth = getFirebaseAuth();
   const db = getFirebaseDb();
   const user = auth.currentUser;
@@ -22,7 +22,7 @@ function SendMessage() {
       text: message,
       uid: user?.uid,
       photoURL: user?.photoURL,
-      createdAt: serverTimestamp()
+      createdAt: Timestamp.fromDate(new Date())
     })
 
     setMessage("");
@@ -51,7 +51,7 @@ function SendMessage() {
               fontWeight: "300",
               marginLeft: "1%",
               marginBottom: "-2%",
-            }} 
+            }}
             type="submit"
           >送信</Button>
         </div>
