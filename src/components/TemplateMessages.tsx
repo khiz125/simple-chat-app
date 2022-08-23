@@ -1,6 +1,7 @@
 import React from 'react'
 import { getFirebaseDb, getFirebaseAuth } from "../firebase";
-import { Firestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import Moment from "react-moment";
 
 function TemplateMessages() {
 
@@ -14,7 +15,7 @@ function TemplateMessages() {
       text: event,
       uid: user?.uid,
       photoURL: user?.photoURL,
-      createdAt: serverTimestamp()
+      createdAt: Timestamp.fromDate(new Date())
     })
   }
   return (
