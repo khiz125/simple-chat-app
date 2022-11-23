@@ -1,4 +1,4 @@
-# Simple Chat app with template messages
+# Simple private chat app with template messages
 
 Designed for people who are not familiar with native application such as the elderly.
 
