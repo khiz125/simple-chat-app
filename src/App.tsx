@@ -32,7 +32,7 @@ function App(): JSX.Element {
     setTimeout(() => {
       setIsLoading(false);
     }, 4800)
-  }, [])
+  }, []);
 
   return (
     <main>
